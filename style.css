@@ -1,0 +1,389 @@
+/* ========== VARIABILI CSS ========== */
+:root {
+  --circle-size: 58vw;
+  --circle-size-shrinked: 56vw;
+  --image-size: 5.5vw;
+  --image-size-selected: 9vw;
+  --image-positioning-radius: 30%;
+  --image-positioning-radius-shrinked: 34%;
+  --echo-text-size: 16.25rem;
+  --echo-button-font-size: 1rem;
+  --corner-font-size: 0.9375rem;
+  --echo-title-font-size: 1.25rem;
+}
+
+/* ========== FONT AGGIUNTI ========== */
+@font-face {
+  font-family: 'Romietrial';
+  src: url('assets/fonts/RomieTrial-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Romietrial';
+  src: url('assets/fonts/RomieTrial-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Romietrial';
+  src: url('assets/fonts/RomieTrial-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Romietrial';
+  src: url('assets/fonts/RomieTrial-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Romietrial';
+  src: url('assets/fonts/RomieTrial-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Romietrial';
+  src: url('assets/fonts/RomieTrial-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('assets/fonts/NeueHaasDisplayThin.ttf') format('truetype'),
+       url('assets/fonts/NeueHaasDisplayRoman.ttf') format('truetype'),
+       url('assets/fonts/NeueHaasDisplayLight.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ========== RESET E BASE ========== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow: hidden; /* Rafforzato per prevenire barre di scorrimento */
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* ========== CORNER LINKS E LABELS ========== */
+.corner {
+  position: fixed;
+  padding: 1rem;
+  z-index: 2;
+  font-family: 'Romietrial', sans-serif;
+  font-size: var(--corner-font-size);
+}
+
+.top-left { top: 0; left: 0; }
+.top-right { top: 0; right: 0; }
+.bottom-left { bottom: 0; left: 0; }
+.bottom-right { bottom: 0; right: 0; }
+
+.corner-link {
+  color: black;
+  text-decoration: none;
+  font-weight: 400;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.corner-link:hover {
+  font-style: italic;
+}
+
+.corner-label {
+  color: black;
+}
+
+#echo-title {
+  font-style: italic;
+  font-size: var(--echo-title-font-size);
+}
+
+/* ========== ECHO CONTAINER ========== */
+.echo-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18.75rem;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.3125rem;
+  text-align: center;
+  z-index: 0;
+}
+
+.echo-text {
+  font-family: 'Romietrial', sans-serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--echo-text-size);
+  color: transparent;
+  -webkit-text-stroke: 0.09375rem black;
+  padding: 0.625rem;
+  line-height: 0.9;
+}
+
+.echo-button {
+  font-family: 'Romietrial', sans-serif;
+  font-weight: 400;
+  font-size: var(--echo-button-font-size);
+  color: black;
+  border: 0.0625rem solid black;
+  border-radius: 1.5625rem;
+  padding: 0.375rem 1.25rem;
+  width: fit-content;
+}
+
+/* ========== RUOTA CENTRALE ========== */
+.circle {
+  position: absolute;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+  transition: left 0.8s ease-in-out, transform 0.8s ease-in-out, width 0.8s ease-in-out, height 0.8s ease-in-out;
+}
+
+.circle.shrinked {
+  width: var(--circle-size-shrinked);
+  height: var(--circle-size-shrinked);
+  left: 18%; /* Ripristinato per corrispondere a translate(-70%, -50%) */
+}
+
+@keyframes slow-rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.circle.rotating {
+  animation: slow-rotate 30s linear infinite;
+}
+
+.circle img {
+  position: absolute;
+  width: var(--image-size);
+  height: var(--image-size);
+  object-fit: cover;
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
+  transition: all 0.8s ease-in-out;
+}
+
+.circle img.selected {
+  width: var(--image-size-selected);
+  height: var(--image-size-selected);
+  z-index: 10;
+}
+
+/* ========== TESTI LATERALI ========== */
+.details-image {
+  position: fixed;
+  top: 50%;
+  left: 44%;
+  transform: translateY(-50%);
+  width: 70vw;
+  max-width: 31.25rem;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+  z-index: 2;
+}
+
+.details-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ========== ABOUT ========== */
+.about-panel {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  max-width: 18.75rem;
+  height: 100vh;
+  background: white;
+  color: black;
+  font-family: 'Neue Haas Display', sans-serif;
+  box-shadow: -0.25rem 0 1.25rem rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  z-index: 3;
+  transition: right 0.6s ease-in-out;
+  overflow-y: auto;
+}
+
+.about-panel.open {
+  right: 0;
+}
+
+.about-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.close-about {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.echo-word {
+  font-family: 'Romietrial', sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 2.1875rem;
+  color: transparent;
+  -webkit-text-stroke: 0.03125rem black;
+  line-height: 1;
+}
+
+/* ========== MEDIA QUERIES ========== */
+
+/* Tablet (max-width: 768px) */
+/* Tablet (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  :root {
+    --circle-size: 100vw; /* Cerchio occupa l'intera larghezza */
+    --circle-size-shrinked: 80vw; /* Cerchio ridotto quando spostato */
+    --image-size: 9vw; /* Immagini più grandi per visibilità */
+    --image-size-selected: 11vw; /* Immagine selezionata più grande */
+    --image-positioning-radius: 40%; /* Raggio più ampio */
+    --image-positioning-radius-shrinked: 48%; /* Raggio espanso */
+    --echo-text-size: 13rem; /* Testo "echo" più piccolo */
+    --echo-button-font-size: 0.7rem; /* Bottone più piccolo */
+  }
+
+  .circle.shrinked {
+    left: 17%; /* Spostamento a sinistra per mantenere l'effetto rotante */
+  }
+
+  .circle {
+    max-width: 100vw; /* Limita il cerchio per evitare overflow */
+    max-height: 100vw; /* Usa max-height uguale a max-width per mantenere il cerchio */
+  }
+
+  .echo-container {
+    width: 15rem; /* Riduce la larghezza del container */
+    max-width: 90vw; /* Limita per evitare overflow */
+  }
+
+  .echo-text {
+    -webkit-text-stroke: 0.075rem black; /* Riduce lo spessore del contorno */
+    max-width: 90%; /* Limita il testo per evitare overflow */
+    transform: translate(-45%, 0%); /* Sposta a sinistra il testo "echo" */
+    
+  }
+
+  .details-image {
+    left: 40%; /* Sposta l'immagine di dettaglio per evitare sovrapposizioni */
+    width: 50vw; /* Riduce la larghezza dell'immagine di dettaglio */
+    max-width: 25rem; /* Limita la dimensione massima */
+  }
+
+  .about-panel {
+    max-width: 25rem; /* Pannello più largo per leggibilità */
+    padding: 1.5rem; /* Riduce il padding */
+  }
+}
+
+/* Mobile (max-width: 376px) */
+@media screen and (max-width: 376px) {
+  :root {
+    --circle-size: 100vw; /* Mantiene il cerchio a tutta larghezza */
+    --circle-size-shrinked: 80vw; /* Cerchio ridotto */
+    --image-size: 9vw; /* Immagini proporzionate */
+    --image-size-selected: 11vw; /* Immagine selezionata proporzionata */
+    --image-positioning-radius: 40%; /* Raggio invariato */
+    --image-positioning-radius-shrinked: 48%; /* Raggio invariato */
+    --echo-text-size: 9rem; /* Testo "echo" molto più piccolo */
+    --echo-button-font-size: 0.7rem; /* Bottone piccolo */
+    --corner-font-size: 0.65rem; /* Testo nei corner più piccolo */
+    --echo-title-font-size: 0.9rem; /* Titolo "echo" più piccolo */
+  }
+
+  .circle.shrinked {
+    left: 17%; /* Mantiene lo spostamento a sinistra */
+  }
+
+  .circle {
+    max-width: 100vw; /* Limita il cerchio per evitare overflow */
+    max-height: 100vw; /* Usa max-height uguale a max-width per mantenere il cerchio */
+  }
+
+  .echo-container {
+    width: 12rem; /* Container più stretto */
+    max-width: 90vw; /* Limita per evitare overflow */
+  }
+
+  .echo-text {
+    -webkit-text-stroke: 0.06rem black; /* Contorno ancora più sottile */
+    margin-bottom: 16rem; /* Spazio per evitare sovrapposizioni */
+    padding-bottom: 0; /* Rimuove padding inferiore */
+    max-width: 90%; /* Limita il testo per evitare overflow */
+    transform: translate(-32%, 0%); /* Sposta a sinistra il testo "echo" */
+  }
+
+  .echo-button {
+    padding: 0.6rem 1.5rem; /* Padding ridotto */
+    white-space: nowrap; /* Evita che il testo vada a capo */
+    margin-bottom: 1rem; /* Spazio inferiore */
+  }
+
+  .corner {
+    padding: 0.8rem; /* Padding ridotto per i corner */
+  }
+
+  .details-image {
+    left: 40%; /* Posizione centrata */
+    width: 50vw; /* Larghezza ridotta */
+    max-width: 18rem; /* Dimensione massima ridotta */
+  }
+
+  .about-panel {
+    max-width: 60%; /* Pannello occupa il 60% dello schermo */
+    padding: 1rem; /* Padding minimo */
+  }
+
+  .about-content p {
+    font-size: 0.9rem; /* Testo più piccolo */
+  }
+
+  .echo-word {
+    font-size: 1.8rem; /* Testo "echo" nel pannello più piccolo */
+  }
+}

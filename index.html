@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Rotating Covers</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Cerchio centrale rotante -->
+  <div class="circle" id="circle"></div>
+
+  <!-- Testo introduttivo e bottone di avvio -->
+  <div class="echo-container">
+    <div class="echo-text">echo</div>
+    <div class="echo-button">clicca su una copertina per iniziare</div>
+  </div>
+
+  <!-- Area per l'immagine e i dettagli -->
+  <div class="details-image" id="detailsImage"></div>
+
+  <!-- Angolo in alto a sinistra: link HOME -->
+  <div class="corner top-left">
+    <a href="#" class="corner-link" id="home-link">HOME</a>
+  </div>
+
+  <!-- Angolo in alto a destra: link ABOUT -->
+  <div class="corner top-right">
+    <a href="#" class="corner-link" id="about-link">ABOUT</a>
+  </div>
+
+  <!-- Angolo in basso a sinistra: titolo sito -->
+  <div class="corner bottom-left">
+    <div class="corner-label" id="echo-title">echo</div>
+  </div>
+
+  <!-- Angolo in basso a destra: autore -->
+  <div class="corner bottom-right">
+    <div class="corner-label" id="author-name">CHIARA BONZI</div>
+  </div>
+
+  <!-- Pannello informativo ABOUT -->
+  <div class="about-panel" id="aboutPanel">
+    <div class="about-content">
+      <!-- Bottone per chiudere il pannello -->
+      <button class="close-about" id="closeAbout">×</button>
+      
+      <!-- Contenuto testuale della sezione ABOUT -->
+      <p>
+        <span class="echo-word">echo</span> è un sito web personale che esplora un tema per me molto affascinante: 
+        la connessione profonda tra la musica e i ricordi.
+      </p>
+      <p>
+        Ogni copertina è un'eco visiva di un ricordo, un'interpretazione personale, una storia, 
+        che ho cercato di rendere tangibile attraverso le parole e le immagini.
+      </p>
+      <p>
+        Scorri e lasciati trasportare da questi frammenti.
+      </p>
+    </div>
+  </div>
+
+  <!-- Script JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>
