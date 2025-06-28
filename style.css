@@ -387,3 +387,67 @@ body.no-scroll {
     font-size: 1.8rem; /* Testo "echo" nel pannello più piccolo */
   }
 }
+
+/* MacBook (max-width: 1440px) */
+/* MacBook (max-width: 1440px) */
+@media screen and (max-width: 1440px) {
+  :root {
+    --circle-size: 75vw; /* Cerchio più grande rispetto al desktop, ma non a tutta larghezza */
+    --circle-size-shrinked: 70vw; /* Cerchio ridotto quando spostato */
+    --image-size: 7vw; /* Immagini leggermente più grandi rispetto al desktop */
+    --image-size-selected: 10vw; /* Immagine selezionata proporzionata */
+    --image-positioning-radius: 35%; /* Raggio intermedio */
+    --image-positioning-radius-shrinked: 42%; /* Raggio espanso */
+    --echo-text-size: 18rem; /* Testo "echo" più piccolo del desktop, ma leggibile */
+    --echo-button-font-size: 1rem; /* Testo del bottone più grande */
+    --corner-font-size: 0.8rem; /* Testo nei corner leggibile */
+    --echo-title-font-size: 1rem; /* Titolo "echo" proporzionato */
+  }
+
+  .circle.shrinked {
+    left: 17%; /* Spostamento a sinistra per mantenere l'effetto rotante */
+  }
+
+  .circle {
+    max-width: 100vw; /* Limita il cerchio per evitare overflow */
+    max-height: 100vw; /* Mantiene il cerchio rotondo */
+  }
+
+  .echo-container {
+    width: 16rem; /* Container leggermente più largo rispetto al tablet */
+    max-width: 90vw; /* Limita per evitare overflow */
+    transform: translate(-50%, -50%); /* Mantiene il testo "echo" centrato */
+  }
+
+  .echo-text {
+    -webkit-text-stroke: 0.1rem black; /* Contorno leggermente più sottile */
+    max-width: 220%; /* Limita il testo per evitare overflow */
+  }
+
+  .details-image {
+    left: 48%; /* Sposta l'immagine di dettaglio per evitare sovrapposizioni */
+    width: 80vw; /* Larghezza intermedia */
+    max-width: 34rem; /* Limita la dimensione massima */
+  }
+
+  .about-panel {
+    max-width: 22rem; /* Pannello più largo per leggibilità */
+    padding: 1.75rem; /* Padding intermedio */
+  }
+
+  .about-content p {
+    font-size: 0.95rem; /* Testo leggibile */
+  }
+
+  .echo-word {
+    font-size: 2rem; /* Testo "echo" nel pannello proporzionato */
+  }
+
+  .echo-button {
+    font-size: var(--echo-button-font-size); /* Usa la variabile aggiornata (1rem) */
+    padding: 0.5rem 1.5rem; /* Padding aumentato per ingrandire il bottone */
+    border-radius: 2rem; /* Bordi più arrotondati per proporzione */
+    width: fit-content; /* Mantiene il bottone dimensionato al contenuto */
+    white-space: nowrap; /* Garantisce che il testo rimanga su una sola riga */
+  }
+}
